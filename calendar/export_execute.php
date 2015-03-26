@@ -191,13 +191,12 @@ foreach($events as $event) {
     $ev->add_property('dtstamp', Bennu::timestamp_to_datetime()); // now
     if ($event->timeduration > 0) {
         //dtend is better than duration, because it works in Microsoft Outlook and works better in Korganizer
-        $ev->add_property('dtstart', Bennu::timestamp_to_datetime($event->timestart)); // when event starts
+        $ev->add_property('dtstart', Bennu::timestamp_to_datetime($event->timestart)); // when event starts.
         $ev->add_property('dtend', Bennu::timestamp_to_datetime($event->timestart + $event->timeduration));
-    }
-    else {
+    } else {
          // when no duration is present, ie an all day event, VALUE should be date instead of time and dtend = dtstart + 1 day
-        $ev->add_property('dtstart', Bennu::timestamp_to_date($event->timestart),array('value' => 'DATE')); // all day event
-        $ev->add_property('dtend', Bennu::timestamp_to_date($event->timestart+86400),array('value' => 'DATE')); // all day event
+        $ev->add_property('dtstart', Bennu::timestamp_to_date($event->timestart), array('value' => 'DATE')); // All day event.
+        $ev->add_property('dtend', Bennu::timestamp_to_date($event->timestart + 86400), array('value' => 'DATE')); // All day event.
     }
     if ($event->courseid != 0) {
         $coursecontext = context_course::instance($event->courseid);
