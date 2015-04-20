@@ -194,7 +194,7 @@ foreach($events as $event) {
         $ev->add_property('dtstart', Bennu::timestamp_to_datetime($event->timestart)); // when event starts.
         $ev->add_property('dtend', Bennu::timestamp_to_datetime($event->timestart + $event->timeduration));
     } else {
-         // when no duration is present, ie an all day event, VALUE should be date instead of time and dtend = dtstart + 1 day
+         //When no duration is present, ie an all day event, VALUE should be date instead of time and dtend = dtstart + 1 day
         $ev->add_property('dtstart', Bennu::timestamp_to_date($event->timestart), array('value' => 'DATE')); // All day event.
         $ev->add_property('dtend', Bennu::timestamp_to_date($event->timestart + 86400), array('value' => 'DATE')); // All day event.
     }
